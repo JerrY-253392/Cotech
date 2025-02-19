@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Roc Grotesk";
+  src: url("./assets/Demo_Fonts/Fontspring-DEMO-rocgrotesk-regular.otf") format("truetype");
+  font-weight: normal;
+  font-size: normal;
+}
+
+body {
+  font-family: "Roc Grotesk", sans-serif;
+}
