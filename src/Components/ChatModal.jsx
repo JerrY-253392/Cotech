@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-const ChatModal = ({ handleSendMessage, setInput, input, messages }) => {
+const ChatModal = ({ messages }) => {
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
@@ -26,7 +26,7 @@ const ChatModal = ({ handleSendMessage, setInput, input, messages }) => {
             .map((msg, index) => (
               <div
                 key={index}
-                className={`flex items-start space-x-2  ${
+                className={`flex items-start space-x-2 ${
                   msg.sender === "user" ? "justify-end" : "justify-start"
                 }`}
               >
@@ -48,25 +48,6 @@ const ChatModal = ({ handleSendMessage, setInput, input, messages }) => {
               </div>
             ))}
           <div ref={messagesEndRef} />
-        </div>
-
-        {/* Input Section */}
-        <div className="p-3 bg-white border-t border-gray-200">
-          <div className="flex items-center space-x-2">
-            <input
-              type="text"
-              placeholder="Saisissez un message..."
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              className="flex-grow border border-gray-300 rounded-full text-sm px-4 py-2 focus:ring focus:ring-yellow-400 focus:outline-none"
-            />
-            <button
-              onClick={handleSendMessage}
-              className="from-[#ffA92f] to-[#ffcc85] bg-gradient-to-r text-white px-4 py-2 rounded-lg"
-            >
-              <img src="/send.svg" alt="Send" className="w-5 h-5" />
-            </button>
-          </div>
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
-const FAQsModal = ({ handleSendMessage, input, setInput, setOpen }) => {
+const FAQsModal = ({ setOpen }) => {
   return (
     <div className="">
-      <div className="relative p-6 min-h-96 ">
+      <div className="relative p-6 min-h-96">
         <img
           src="/background.png"
           alt="background"
@@ -31,26 +31,20 @@ const FAQsModal = ({ handleSendMessage, input, setInput, setOpen }) => {
           ].map((question, index) => (
             <button
               key={index}
-              className="text-left px-4 py-2 rounded-full border text-xs border-[#FFA92F] "
+              className="text-left px-4 py-2 rounded-full border text-xs border-[#FFA92F]"
             >
               {question}
             </button>
           ))}
         </div>
 
-        <div className="flex items-center space-x-2 pt-2 border-t border-gray-200">
-          <input
-            type="text"
-            placeholder="Saisissez un message..."
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            className="flex-grow border border-gray-300 rounded-lg text-sm px-3 py-1 focus:ring focus:ring-yellow-400 focus:outline-none"
-          />
+        {/* Button to switch to Chat */}
+        <div className="flex justify-center mt-4">
           <button
             onClick={() => setOpen(true)}
             className="from-[#ffA92f] to-[#ffcc85] bg-gradient-to-r text-white px-4 py-2 rounded-lg"
           >
-            <img src="/send.svg" alt="Send" />
+            Commencer la discussion
           </button>
         </div>
       </div>
