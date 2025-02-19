@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { SlSizeFullscreen } from "react-icons/sl";
 import FAQsModal from "./FAQsModal";
-import ChatModal from "./chatModal";
 import { useNavigate } from "react-router-dom";
+import ChatModal from "./ChatModal"
 
 const ChatbotModal = () => {
   const [messages, setMessages] = useState([
