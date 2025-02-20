@@ -17,7 +17,7 @@ const ChatScreen = () => {
         {!open ? <FAQSection /> : <Chat />}
 
         {/* Input Section (Single) */}
-        <div className="py-3 bg-white border-t border-gray-200 flex items-center space-x-2 min-w-7xl rounded-3xl p-4">
+        <div className="py-3 bg-white border-t border-gray-200 flex items-center space-x-2 w-full md:w-xl lg:w-4xl xl:w-5xl 2xl:w-7xl  rounded-3xl p-4">
           <input
             type="text"
             placeholder="Saisissez un message..."

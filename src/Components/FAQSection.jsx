@@ -24,7 +24,7 @@ const FAQSection = () => {
         </p>
       </div>
       {/* FAQ Questions */}
-      <div className="bg-white p-4 w-full max-w-7xl rounded-2xl mt-6">
+      <div className="bg-white p-4 w-full md:max-w-xl lg:max-w-4xl xl:max-w-5xl  2xl:max-w-7xl rounded-2xl mt-6">
         <h2 className="text-lg font-semibold mb-3">Foire aux questions</h2>
         <div className="flex flex-wrap gap-2">
           {faqQuestions.map((question, index) => (
