@@ -35,25 +35,28 @@ const ChatbotModal = () => {
   };
 
   return (
-    <div className="bg-[#f3f5f5] min-h-[672px] max-w-[400px] shadow-lg relative">
+    <div className="bg-[#f3f5f5] max-w-[400px] shadow-lg relative flex flex-col h-[750px]">
       {/* Header Section */}
       <div className="p-4 border-b bg-white border-gray-200 flex justify-between items-center">
         <img src="/logo.png" alt="Logo" className="w-24" />
         <SlSizeFullscreen
-          fontsize={25}
+          fontSize={25}
           className="cursor-pointer"
           onClick={() => navigate("/chat-screen")}
         />
       </div>
 
-      {/* Body Section */}
-      {!open ? (
-        <FAQsModal setOpen={setOpen} />
-      ) : (
-        <ChatModal messages={messages} />
-      )}
+      {/* Main Body (Flexible Space) */}
+      <div className="relative flex-grow flex flex-col justify-center items-center overflow-hidden">
+        <img
+          src="/background.png"
+          alt="background"
+          className="absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+        />
+        {!open ? <FAQsModal /> : <ChatModal messages={messages} />}
+      </div>
 
-      {/* Shared Input Section */}
+      {/* Input Section (Fixed at Bottom) */}
       <div className="p-3 bg-white border-t border-gray-200">
         <div className="flex items-center space-x-2">
           <input
@@ -64,8 +67,8 @@ const ChatbotModal = () => {
             className="flex-grow border border-gray-300 rounded-full text-sm px-4 py-2 focus:ring focus:ring-yellow-400 focus:outline-none"
           />
           <button
-            onClick={handleSendMessage}
-            className="from-[#ffA92f] to-[#ffcc85] bg-gradient-to-r text-white px-4 py-2 rounded-lg"
+            onClick={() => setOpen(!open)}
+            className="from-[#ffA92f] to-[#ffcc85] cursor-pointer bg-gradient-to-r text-white px-4 py-2 rounded-lg"
           >
             <img src="/send.svg" alt="Send" className="w-5 h-5" />
           </button>
@@ -74,5 +77,6 @@ const ChatbotModal = () => {
     </div>
   );
 };
+
 
 export default ChatbotModal;
