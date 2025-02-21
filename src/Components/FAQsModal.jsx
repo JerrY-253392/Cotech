@@ -13,7 +13,7 @@ const FAQsModal = () => {
 
       {/* FAQ Section at Bottom */}
       <div className="p-3 bg-white rounded-t-2xl w-full">
-        <h1 className="text-sm font-medium px-2 my-4">Foire aux questions</h1>
+        <h1 className=" font-medium px-2 my-4">Foire aux questions</h1>
         <div className="space-y-2">
           {[
             "Quels services propose Cotech ?",
@@ -22,7 +22,7 @@ const FAQsModal = () => {
           ].map((question, index) => (
             <button
               key={index}
-              className="text-left px-4 py-2 rounded-full border text-xs border-[#FFA92F] w-full"
+              className="text-left px-4 py-2 rounded-full border text-sm border-[#FFA92F] w-full"
             >
               {question}
             </button>

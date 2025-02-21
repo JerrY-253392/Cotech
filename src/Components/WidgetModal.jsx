@@ -35,7 +35,7 @@ const ChatbotModal = () => {
   };
 
   return (
-    <div className="bg-[#f3f5f5] max-w-[400px] shadow-lg relative flex flex-col h-[750px]">
+    <div className="bg-[#f3f5f5] max-w-[400px] shadow-lg relative flex flex-col h-[600px]">
       {/* Header Section */}
       <div className="p-4 border-b bg-white border-gray-200 flex justify-between items-center">
         <img src="/logo.png" alt="Logo" className="w-24" />
@@ -64,7 +64,7 @@ const ChatbotModal = () => {
             placeholder="Saisissez un message..."
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            className="flex-grow border border-gray-300 rounded-full text-sm px-4 py-2 focus:ring focus:ring-yellow-400 focus:outline-none"
+            className="flex-grow border border-gray-300 rounded-full  px-4 py-2 focus:ring focus:ring-yellow-400 focus:outline-none"
           />
           <button
             onClick={() => setOpen(!open)}
