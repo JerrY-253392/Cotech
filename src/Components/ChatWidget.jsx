@@ -11,7 +11,7 @@ const ChatWidget = () => {
       <img
         src="/Chatbot.png"
         alt="chatbot"
-        className=" w-10 absolute bottom-0 left-0 cursor-pointer"
+        className=" w-12 absolute bottom-0 left-0 cursor-pointer"
         onClick={() => setIsOpen(!isOpen)}
       />
     </div>

@@ -23,13 +23,13 @@ const ChatScreen = () => {
             placeholder="Saisissez un message..."
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            className="flex-grow border border-gray-300 rounded-3xl text-lg px-6 h-14 focus:ring focus:ring-yellow-400 focus:outline-none"
+            className="lg:flex-grow border w-full border-gray-300 rounded-3xl text-sm sm:text-base lg:text-lg px-2 sm:px-4 lg:px-6  h-10  sm:h-12 lg:h-14 focus:ring focus:ring-yellow-400 focus:outline-none"
           />
           <button
             onClick={() => setOpen(!open)}
-            className="bg-[#FFA92F] hover:bg-[#FFCC85] transition-all text-white flex justify-center items-center rounded-4xl w-20 h-12"
+            className="bg-[#FFA92F] hover:bg-[#FFCC85] transition-all text-white flex justify-center items-center rounded-4xl w-12 sm:w-16 lg:w-20 h-8 sm:h-10 lg:h-12"
           >
-            <img src="/send.svg" alt="Send" className="w-7" />
+            <img src="/send.svg" alt="Send" className="w-5 sm:w-6 lg:w-7" />
           </button>
         </div>
       </div>
