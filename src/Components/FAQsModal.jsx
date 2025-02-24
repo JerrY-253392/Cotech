@@ -3,7 +3,7 @@ const FAQsModal = () => {
     <div className="flex flex-col justify-between flex-grow w-full h-full">
       <div className="flex flex-col justify-center items-center flex-grow">
         <h2 className="text-center text-lg font-medium mb-4">
-          Bienvenue sur CotechAI!
+          Bienvenue sur Alfred!
         </h2>
         <p className="text-gray-600 text-center text-sm mb-6 px-4">
           Votre assistant 24h/24 et 7j/7 pour le soutien en déneigement,
