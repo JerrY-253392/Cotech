@@ -1,22 +1,54 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
-const Chat = () => {
+const Chat = ({ isLoading, messages }) => {
+  const messagesEndRef = useRef(null);
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    if (containerRef.current) {
+      containerRef.current.scrollTop = containerRef.current.scrollHeight;
+    }
+  }, [messages, isLoading]);
+
   return (
-    <div className="w-full flex flex-col space-y-4 max-h-[65vh] overflow-y-auto">
-      {/* Chat Messages */}
-      <div className="flex items-center justify-end space-x-4">
-        <p className="bg-white px-4 py-2 text-lg rounded-lg shadow">
-          Bonjour, pouvez-vous m'aider ?
-        </p>
-        <img src="/User.svg" alt="User" className="w-10" />
-      </div>
-
-      <div className="flex items-start space-x-4">
-        <img src="/AI.svg" alt="AI bot" className="w-10" />
-        <div className="border border-[#FFA92F]  p-4 rounded-lg">
-          <p>Bien sûr ! Comment puis-je vous aider aujourd'hui ? </p>
+    <div
+      ref={containerRef}
+      className="w-full flex flex-col space-y-4 max-h-[65vh] overflow-y-auto"
+    >
+      {messages.map((msg, index) => (
+        <div
+          key={index}
+          className={`flex items-start space-x-4 ${
+            msg.sender === "user" ? "justify-end" : "justify-start"
+          }`}
+        >
+          {msg.sender !== "user" && (
+            <img src="/AI.svg" alt="AI bot" className="w-10" />
+          )}
+          <p
+            className={`px-4 py-2 text-lg rounded-lg shadow ${
+              msg.sender === "user" ? "bg-white" : "border border-[#FFA92F]"
+            }`}
+          >
+            {msg.text}
+          </p>
+          {msg.sender === "user" && (
+            <img src="/User.svg" alt="User" className="w-10" />
+          )}
         </div>
-      </div>
+      ))}
+
+      {/* Loading Indicator */}
+      {isLoading && (
+        <div className="flex justify-start space-x-2">
+          <img src="/AI.svg" alt="AI" className="w-10" />
+          <div className="border border-[#FFA92F] px-4 w-24 rounded-xl">
+            <span className="loader"></span>
+          </div>
+        </div>
+      )}
+
+      <div ref={messagesEndRef} />
     </div>
   );
 };
