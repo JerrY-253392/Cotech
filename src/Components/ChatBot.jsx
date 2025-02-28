@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import Markdown from "react-markdown";
 
 const Chat = ({ isLoading, messages }) => {
   const messagesEndRef = useRef(null);
@@ -30,7 +31,7 @@ const Chat = ({ isLoading, messages }) => {
               msg.sender === "user" ? "bg-white" : "border border-[#FFA92F]"
             }`}
           >
-            {msg.text}
+            <Markdown>{msg.text}</Markdown>
           </p>
           {msg.sender === "user" && (
             <img src="/User.svg" alt="User" className="w-10" />

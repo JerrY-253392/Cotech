@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import Markdown from "react-markdown";
 
 const ChatModal = ({ messages, isLoading }) => {
   const messagesEndRef = useRef(null);
@@ -8,7 +9,7 @@ const ChatModal = ({ messages, isLoading }) => {
     if (containerRef.current) {
       containerRef.current.scrollTop = containerRef.current.scrollHeight;
     }
-  }, [messages, isLoading]); 
+  }, [messages, isLoading]);
 
   return (
     <div className="flex flex-col flex-grow w-full h-full overflow-hidden">
@@ -34,7 +35,7 @@ const ChatModal = ({ messages, isLoading }) => {
                   : "border border-[#FFA92F] text-black"
               }`}
             >
-              {msg.text}
+              <Markdown>{msg.text}</Markdown>
             </div>
             {msg.sender === "user" && (
               <img src="/User.svg" alt="User" className="w-10" />
