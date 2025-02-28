@@ -2,18 +2,23 @@ import React from "react";
 
 const FAQSection = () => {
   const faqQuestions = [
-    "Quels services propose Cotech ?",
-    "Proposez-vous une assistance en plusieurs langues ?",
-    "Comment puis-je demander une consultation ?",
-    "Où puis-je trouver vos derniers projets ?",
-    "Comment votre chatbot aide-t-il à répondre aux questions ?",
+    "Où puis-je acheter les accessoires Cotech ?",
+    "Where can I buy Cotech accessories?",
+    "Quels sont les produits que vous proposez ?",
+    "What products do you offer?",
+    "Quels sont vos produits les plus populaires ?",
+    "What are your most popular products?",
   ];
 
   return (
     <div className="relative flex flex-col justify-center lg:justify-between h-[60vh] 2xl:h-[65vh] max-h-[65vh] items-center w-full">
       {/* Replace Image */}
       <div className="flex flex-col items-center w-full">
-        <img src="/Bot.svg" alt="AI Bot" className=" w-full  sm:w-1/2 lg:w-1/4 -mb-12" />
+        <img
+          src="/Bot.svg"
+          alt="AI Bot"
+          className=" w-full  sm:w-1/2 lg:w-1/4 -mb-12"
+        />
         <h1 className="  text-xl sm:text-3xl lg:text-5xl font-semibold text-center">
           Discutez avec <span className="text-[#FFA92F]">Alfred</span>
         </h1>

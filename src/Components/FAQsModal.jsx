@@ -16,13 +16,13 @@ const FAQsModal = () => {
         <h1 className=" font-medium px-2 my-4">Foire aux questions</h1>
         <div className="space-y-2">
           {[
-            "Quels services propose Cotech ?",
-            "Proposez-vous une assistance en plusieurs langues ?",
-            "Comment votre chatbot aide-t-il à répondre aux questions ?",
+            "Où puis-je acheter les accessoires Cotech ?",
+            "Quels sont les produits que vous proposez ?",
+            "Quels sont vos produits les plus populaires ?",
           ].map((question, index) => (
             <button
               key={index}
-              className="text-left px-4 py-2 rounded-full border text-sm border-[#FFA92F] w-full"
+              className="text-left px-4 py-2 rounded-full border text-sm border-[#FFA92F] w-full cursor-pointer hover:bg-[#FFA92F] hover:text-white transition" 
             >
               {question}
             </button>
