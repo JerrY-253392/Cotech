@@ -4,11 +4,14 @@ import FAQsModal from "./FAQsModal";
 import { useNavigate } from "react-router-dom";
 import ChatModal from "./ChatModal";
 import axios from "axios";
+import { useAppContext } from "../context/AppContext";
+import { FaFlag, FaFlagUsa } from "react-icons/fa";
 
 const ChatbotModal = ({ userId }) => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const { isFrench, toggleLanguage } = useAppContext();
   const navigate = useNavigate();
 
   const handleSendMessage = () => {
@@ -52,11 +55,49 @@ const ChatbotModal = ({ userId }) => {
       {/* Header Section */}
       <div className="p-4 border-b bg-white border-gray-200 flex justify-between items-center">
         <img src="/logo.png" alt="Logo" className="w-24" />
-        <SlSizeFullscreen
-          fontSize={25}
-          className="cursor-pointer"
-          onClick={() => navigate("/chat-screen")}
-        />
+        <div className="flex  items-center  space-x-6">
+          <div className="flex border ">
+            <button
+              onClick={() => toggleLanguage(false)}
+              className={`${
+                !isFrench
+                  ? "bg-gray-200 cursor-not-allowed"
+                  : "bg-white cursor-pointer"
+              } p-2     flex items-center gap-2`}
+              disabled={!isFrench}
+            >
+              <span
+                className={`${
+                  !isFrench ? "text-blue-600 font-bold text-lg" : "text-black text-base"
+                } `}
+              >
+                EN
+              </span>
+            </button>
+            <button
+              onClick={() => toggleLanguage(true)}
+              className={`p-2     flex items-center gap-2 ${
+                isFrench
+                  ? "bg-gray-200 cursor-not-allowed "
+                  : "bg-white cursor-pointer"
+              }`}
+              disabled={isFrench}
+            >
+              <span
+                className={`${
+                  isFrench ? "text-blue-600 font-bold text-lg" : "text-black text-base"
+                } `}
+              >
+                FR
+              </span>
+            </button>
+          </div>
+          <SlSizeFullscreen
+            fontSize={25}
+            className="cursor-pointer"
+            onClick={() => navigate("/chat-screen")}
+          />
+        </div>
       </div>
 
       {/* Main Body (Flexible Space) */}
@@ -66,7 +107,11 @@ const ChatbotModal = ({ userId }) => {
           alt="background"
           className="absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
         />
-        {!messages.length ? <FAQsModal /> : <ChatModal isLoading= {isLoading} messages={messages} />}
+        {!messages.length ? (
+          <FAQsModal />
+        ) : (
+          <ChatModal isLoading={isLoading} messages={messages} />
+        )}
       </div>
 
       {/* Input Section (Fixed at Bottom) */}
@@ -74,7 +119,9 @@ const ChatbotModal = ({ userId }) => {
         <div className="flex items-center space-x-2">
           <input
             type="text"
-            placeholder="Saisissez un message..."
+            placeholder={`${
+              isFrench ? "Saisissez un message..." : "Enter a message..."
+            }`}
             value={input}
             onKeyDown={handleKeyDown}
             onChange={(e) => setInput(e.target.value)}
