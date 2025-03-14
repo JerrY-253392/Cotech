@@ -19,6 +19,7 @@ const FAQSection = () => {
   return (
     <div className="relative flex flex-col justify-center lg:justify-between h-[60vh] 2xl:h-[65vh] max-h-[65vh] items-center w-full">
       {/* Replace Image */}
+      {/* <img src="/Bot.svg" alt="AI Bot" className="w-1/2" /> */}
       <div className="flex flex-col items-center w-full">
         <img
           src="/Bot.svg"
