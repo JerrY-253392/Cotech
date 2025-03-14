@@ -1,5 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import remarkBreaks from "remark-breaks"; // ✅ Fixes single \n not breaking
 
 const Chat = ({ isLoading, messages }) => {
   const messagesEndRef = useRef(null);
@@ -26,13 +28,17 @@ const Chat = ({ isLoading, messages }) => {
           {msg.sender !== "user" && (
             <img src="/AI.svg" alt="AI bot" className="w-10" />
           )}
-          <p
+          {/* ✅ Fix: Changed <p> to <div> to avoid nested <p> */}
+          <div
             className={`px-4 py-2 text-lg rounded-lg shadow ${
               msg.sender === "user" ? "bg-white" : "border border-[#FFA92F]"
             }`}
           >
-            <Markdown>{msg.text}</Markdown>
-          </p>
+            {/* ✅ Added remarkBreaks for single \n handling */}
+            <Markdown remarkPlugins={[remarkGfm, remarkBreaks]}>
+              {msg.text}
+            </Markdown>
+          </div>
           {msg.sender === "user" && (
             <img src="/User.svg" alt="User" className="w-10" />
           )}

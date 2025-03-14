@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 const ChatModal = ({ messages, isLoading }) => {
   const messagesEndRef = useRef(null);
@@ -35,7 +36,7 @@ const ChatModal = ({ messages, isLoading }) => {
                   : "border border-[#FFA92F] text-black"
               }`}
             >
-              <Markdown>{msg.text}</Markdown>
+              <Markdown remarkPlugins={[remarkGfm]}>{msg.text}</Markdown>
             </div>
             {msg.sender === "user" && (
               <img src="/User.svg" alt="User" className="w-10" />
