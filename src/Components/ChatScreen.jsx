@@ -1,15 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FAQSection from "./FAQSection";
 import Chat from "./ChatBot";
 import axios from "axios";
 import { useAppContext } from "../context/AppContext";
+import Modal from "./LanguageModal";
+import { motion } from "framer-motion";
 
 const ChatScreen = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const userId = localStorage.getItem("userId");
   const [isLoading, setIsLoading] = useState(false);
-  const { isFrench, toggleLanguage } = useAppContext();
+  const { isFrench, isOpenModal, setIsOpenModal } = useAppContext();
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const userLang = navigator.language || navigator.userLanguage;
+      if (isFrench) {
+        if (!userLang.startsWith("fr")) {
+          setIsOpenModal(true);
+        }
+      }
+    }
+  }, []);
 
   const handleSendMessage = () => {
     setIsLoading(true);
@@ -49,45 +62,20 @@ const ChatScreen = () => {
 
   return (
     <div className="h-screen bg-white  pt-6 pb-12 px-8">
-      {/* Fixed Logo */}
+      {isOpenModal && (
+        <div className="absolute top-0 left-1/2 -translate-x-1/2">
+          <motion.div
+            initial={{ y: -50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: -50, opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+          >
+            <Modal isOpen={isOpenModal} onClose={() => setIsOpenModal(false)} />
+          </motion.div>
+        </div>
+      )}
       <div className="flex justify-between items-center mb-6 ">
         <img src="/logo.png" alt="Cotech Logo" className="w-32 " />
-        <div className="flex border ">
-          <button
-            onClick={() => toggleLanguage(false)}
-            className={`${
-              !isFrench
-                ? "bg-gray-200 cursor-not-allowed"
-                : "bg-white cursor-pointer"
-            } p-2     flex items-center gap-2`}
-            disabled={!isFrench}
-          >
-            <span
-              className={`${
-                !isFrench ? "text-blue-600 font-bold text-lg" : "text-black text-base"
-              } `}
-            >
-              EN
-            </span>
-          </button>
-          <button
-            onClick={() => toggleLanguage(true)}
-            className={`p-2     flex items-center gap-2 ${
-              isFrench
-                ? "bg-gray-200 cursor-not-allowed "
-                : "bg-white cursor-pointer"
-            }`}
-            disabled={isFrench}
-          >
-            <span
-              className={`${
-                isFrench ? "text-blue-600 font-bold text-lg" : "text-black text-base"
-              } t`}
-            >
-              FR
-            </span>
-          </button>
-        </div>
       </div>
       {/* Fixed Background Screen */}
       <div className=" w-full bg-[#f3f5f5] min-h-[85vh] rounded-4xl flex flex-col justify-between items-center p-10">

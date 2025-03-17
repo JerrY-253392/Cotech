@@ -6,13 +6,14 @@ const AppContext = createContext();
 // Provider Component
 export const AppProvider = ({ children }) => {
   const [isFrench, setIsFrench] = useState(true);
+  const [isOpenModal, setIsOpenModal] = useState(false);
 
   const toggleLanguage = (value) => {
     setIsFrench(value);
   };
 
   return (
-    <AppContext.Provider value={{ isFrench, toggleLanguage }}>
+    <AppContext.Provider value={{ isFrench, toggleLanguage , isOpenModal , setIsOpenModal }}>
       {children}
     </AppContext.Provider>
   );

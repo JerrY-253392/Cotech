@@ -55,49 +55,11 @@ const ChatbotModal = ({ userId }) => {
       {/* Header Section */}
       <div className="p-4 border-b bg-white border-gray-200 flex justify-between items-center">
         <img src="/logo.png" alt="Logo" className="w-24" />
-        <div className="flex  items-center  space-x-6">
-          <div className="flex border ">
-            <button
-              onClick={() => toggleLanguage(false)}
-              className={`${
-                !isFrench
-                  ? "bg-gray-200 cursor-not-allowed"
-                  : "bg-white cursor-pointer"
-              } p-2     flex items-center gap-2`}
-              disabled={!isFrench}
-            >
-              <span
-                className={`${
-                  !isFrench ? "text-blue-600 font-bold text-lg" : "text-black text-base"
-                } `}
-              >
-                EN
-              </span>
-            </button>
-            <button
-              onClick={() => toggleLanguage(true)}
-              className={`p-2     flex items-center gap-2 ${
-                isFrench
-                  ? "bg-gray-200 cursor-not-allowed "
-                  : "bg-white cursor-pointer"
-              }`}
-              disabled={isFrench}
-            >
-              <span
-                className={`${
-                  isFrench ? "text-blue-600 font-bold text-lg" : "text-black text-base"
-                } `}
-              >
-                FR
-              </span>
-            </button>
-          </div>
           <SlSizeFullscreen
             fontSize={25}
             className="cursor-pointer"
             onClick={() => navigate("/chat-screen")}
           />
-        </div>
       </div>
 
       {/* Main Body (Flexible Space) */}
