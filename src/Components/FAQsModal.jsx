@@ -1,19 +1,7 @@
 import { useAppContext } from "../context/AppContext";
 
-const FAQsModal = () => {
+const FAQsModal = ({ questions, handleFaqClick }) => {
   const { isFrench } = useAppContext();
-
-  const questions = isFrench
-    ? [
-        "Où puis-je acheter les accessoires Cotech ?",
-        "Quels sont les produits que vous proposez ?",
-        "Quels sont vos produits les plus populaires ?",
-      ]
-    : [
-        "Where can I buy Cotech accessories?",
-        "What products do you offer?",
-        "What are your most popular products?",
-      ];
 
   return (
     <div className="flex flex-col justify-between flex-grow w-full h-full">
@@ -37,6 +25,7 @@ const FAQsModal = () => {
           {questions.map((question, index) => (
             <button
               key={index}
+              onClick={() => handleFaqClick(question)}
               className="text-left px-4 py-2 rounded-full border text-sm border-[#FFA92F] w-full cursor-pointer hover:bg-[#FFA92F] hover:text-white transition"
             >
               {question}

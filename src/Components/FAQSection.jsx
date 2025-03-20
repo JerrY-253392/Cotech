@@ -1,20 +1,8 @@
 import React from "react";
 import { useAppContext } from "../context/AppContext";
 
-const FAQSection = () => {
+const FAQSection = ({ faqQuestions, handleFaqClick }) => {
   const { isFrench } = useAppContext();
-
-  const faqQuestions = isFrench
-    ? [
-        "Où puis-je acheter les accessoires Cotech ?",
-        "Quels sont les produits que vous proposez ?",
-        "Quels sont vos produits les plus populaires ?",
-      ]
-    : [
-        "Where can I buy Cotech accessories?",
-        "What products do you offer?",
-        "What are your most popular products?",
-      ];
 
   return (
     <div className="relative flex flex-col justify-center lg:justify-between h-[60vh] 2xl:h-[65vh] max-h-[65vh] items-center w-full">
@@ -45,7 +33,8 @@ const FAQSection = () => {
           {faqQuestions.map((question, index) => (
             <button
               key={index}
-              className="px-4 py-2 text-sm border border-[#FFA92F] rounded-full text-black hover:bg-[#FFA92F] hover:text-white transition"
+              onClick={() => handleFaqClick(question)}
+              className="cursor-pointer px-4 py-2 text-sm border border-[#FFA92F] rounded-full text-black hover:bg-[#FFA92F] hover:text-white transition"
             >
               {question}
             </button>

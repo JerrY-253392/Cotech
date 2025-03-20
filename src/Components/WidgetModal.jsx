@@ -11,8 +11,20 @@ const ChatbotModal = ({ userId }) => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const { isFrench, toggleLanguage } = useAppContext();
+  const { isFrench } = useAppContext();
   const navigate = useNavigate();
+
+  const questions = isFrench
+    ? [
+        "Où puis-je acheter les accessoires Cotech ?",
+        "Quels sont les produits que vous proposez ?",
+        "Quels sont vos produits les plus populaires ?",
+      ]
+    : [
+        "Where can I buy Cotech accessories?",
+        "What products do you offer?",
+        "What are your most popular products?",
+      ];
 
   const handleSendMessage = () => {
     setIsLoading(true);
@@ -50,6 +62,10 @@ const ChatbotModal = ({ userId }) => {
     }
   };
 
+  const handleFaqClick = (question) => {
+    setInput(question);
+  }
+
   return (
     <div className="bg-[#f3f5f5] min-w-[400px] max-w-[400px] shadow-lg relative flex flex-col h-[600px]">
       {/* Header Section */}
@@ -70,7 +86,7 @@ const ChatbotModal = ({ userId }) => {
           className="absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
         />
         {!messages.length ? (
-          <FAQsModal />
+          <FAQsModal questions = {questions} handleFaqClick = {handleFaqClick} />
         ) : (
           <ChatModal isLoading={isLoading} messages={messages} />
         )}

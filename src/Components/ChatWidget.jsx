@@ -8,7 +8,7 @@ import { useAppContext } from "../context/AppContext";
 const ChatWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [userId, setUserId] = useState(localStorage.getItem("userId") || "");
-  const { isFrench, isOpenModal, setIsOpenModal } = useAppContext();
+  const { isFrench, toggleLanguage, setIsOpenModal } = useAppContext();
 
   useEffect(() => {
     if (!userId) {
@@ -20,7 +20,7 @@ const ChatWidget = () => {
       const userLang = navigator.language || navigator.userLanguage;
       if (isFrench) {
         if (!userLang.startsWith("fr")) {
-          setIsOpenModal(true);
+          toggleLanguage(false);
         }
       }
     }
@@ -28,19 +28,6 @@ const ChatWidget = () => {
 
   return (
     <div className="relative bg-black h-screen w-full">
-      {isOpenModal && (
-        <div className="absolute top-0 left-1/2 -translate-x-1/2">
-          <motion.div
-            initial={{ y: -50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -50, opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-          >
-            <Modal isOpen={isOpenModal} onClose={() => setIsOpenModal(false)} />
-          </motion.div>
-        </div>
-      )}
-
       <div className="absolute bottom-0 left-0 p-6">
         {isOpen && <ChatbotModal userId={userId} />}
         <img

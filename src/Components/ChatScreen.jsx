@@ -3,22 +3,32 @@ import FAQSection from "./FAQSection";
 import Chat from "./ChatBot";
 import axios from "axios";
 import { useAppContext } from "../context/AppContext";
-import Modal from "./LanguageModal";
-import { motion } from "framer-motion";
 
 const ChatScreen = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const userId = localStorage.getItem("userId");
   const [isLoading, setIsLoading] = useState(false);
-  const { isFrench, isOpenModal, setIsOpenModal } = useAppContext();
+  const { isFrench, toggleLanguage } = useAppContext();
+
+  const faqQuestions = isFrench
+    ? [
+        "Où puis-je acheter les accessoires Cotech ?",
+        "Quels sont les produits que vous proposez ?",
+        "Quels sont vos produits les plus populaires ?",
+      ]
+    : [
+        "Where can I buy Cotech accessories?",
+        "What products do you offer?",
+        "What are your most popular products?",
+      ];
 
   useEffect(() => {
     if (typeof window !== "undefined") {
       const userLang = navigator.language || navigator.userLanguage;
       if (isFrench) {
         if (!userLang.startsWith("fr")) {
-          setIsOpenModal(true);
+          toggleLanguage(false);
         }
       }
     }
@@ -60,20 +70,13 @@ const ChatScreen = () => {
     }
   };
 
+  const handleFaqClick = (question) => {
+    setInput(question);
+  };
+  
+
   return (
     <div className="h-screen bg-white  pt-6 pb-12 px-8">
-      {isOpenModal && (
-        <div className="absolute top-0 left-1/2 -translate-x-1/2">
-          <motion.div
-            initial={{ y: -50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -50, opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-          >
-            <Modal isOpen={isOpenModal} onClose={() => setIsOpenModal(false)} />
-          </motion.div>
-        </div>
-      )}
       <div className="flex justify-between items-center mb-6 ">
         <img src="/logo.png" alt="Cotech Logo" className="w-32 " />
       </div>
@@ -81,7 +84,7 @@ const ChatScreen = () => {
       <div className=" w-full bg-[#f3f5f5] min-h-[85vh] rounded-4xl flex flex-col justify-between items-center p-10">
         {/* Dynamic Content (FAQ or Chat Section) */}
         {!messages.length ? (
-          <FAQSection />
+          <FAQSection faqQuestions = {faqQuestions}  handleFaqClick = {handleFaqClick}/>
         ) : (
           <Chat isLoading={isLoading} messages={messages} />
         )}
