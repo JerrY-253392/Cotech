@@ -1,8 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import ChatbotModal from "./WidgetModal";
 import { v4 as uuidv4 } from "uuid";
-import Modal from "./LanguageModal";
-import { motion } from "framer-motion";
 import { useAppContext } from "../context/AppContext";
 
 const ChatWidget = () => {
