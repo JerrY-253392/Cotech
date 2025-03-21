@@ -1,19 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import ChatbotModal from "./WidgetModal";
-import { v4 as uuidv4 } from "uuid";
 import { useAppContext } from "../context/AppContext";
 
 const ChatWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [userId, setUserId] = useState(localStorage.getItem("userId") || "");
-  const { isFrench, toggleLanguage, setIsOpenModal } = useAppContext();
+  const { isFrench, toggleLanguage } = useAppContext();
+  const userId = localStorage.getItem("userId");
 
   useEffect(() => {
-    if (!userId) {
-      const newUserId = uuidv4();
-      setUserId(newUserId);
-      localStorage.setItem("userId", newUserId);
-    }
     if (typeof window !== "undefined") {
       const userLang = navigator.language || navigator.userLanguage;
       if (isFrench) {
